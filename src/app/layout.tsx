@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import VantaBackground from './components/VantaBackground';
-import { isMobile } from 'react-device-detect';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,7 +31,6 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider>
-          { !isMobile && <VantaBackground /> }
             <ThemeSwitcher />
             {children}
         </ThemeProvider>

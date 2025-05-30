@@ -20,7 +20,6 @@ export default function SnakeGamePage() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [snake, setSnake] = useState(INITIAL_SNAKE);
   const [food, setFood] = useState(getRandomFood());
-  const [direction, setDirection] = useState(INITIAL_DIRECTION);
   const [gameOver, setGameOver] = useState(false);
   const [score, setScore] = useState(0);
   const [running, setRunning] = useState(false);
@@ -67,9 +66,8 @@ export default function SnakeGamePage() {
     const interval = setInterval(() => {
       setSnake(prev => {
         const maxCells = canvasSize / SCALE;
-        let nextDir = directionQueue.current.length > 1 ? directionQueue.current.shift()! : directionQueue.current[0];
-        setDirection(nextDir);
-        let newHead = {
+        const nextDir = directionQueue.current.length > 1 ? directionQueue.current.shift()! : directionQueue.current[0];
+        const newHead = {
           x: prev[0].x + nextDir.x,
           y: prev[0].y + nextDir.y,
         };
@@ -83,7 +81,7 @@ export default function SnakeGamePage() {
           setTimeout(() => setShowInput(true), 500);
           return prev;
         }
-        let newSnake = [newHead, ...prev];
+        const newSnake = [newHead, ...prev];
         if (newHead.x === food.x && newHead.y === food.y) {
           setFood(getRandomFood());
           setScore(s => s + 1);
@@ -102,7 +100,6 @@ export default function SnakeGamePage() {
     ctx.clearRect(0, 0, canvasSize, canvasSize);
     ctx.fillStyle = 'black';
     ctx.fillRect(0, 0, canvasSize, canvasSize);
-    const maxCells = canvasSize / SCALE;
     ctx.fillStyle = 'red';
     ctx.fillRect(food.x * SCALE, food.y * SCALE, SCALE, SCALE);
     ctx.fillStyle = 'white';

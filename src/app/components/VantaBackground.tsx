@@ -4,12 +4,13 @@ import React, { useEffect, useRef } from 'react';
 import Script from 'next/script';
 import { useTheme } from '../contexts/ThemeContext';
 import { isMobile } from 'react-device-detect';
+import type { VantaEffect } from '../../types/vanta';
 
 
 const VantaBackground = () => {
   const { theme } = useTheme();
   const vantaRef = useRef(null);
-  const vantaEffectRef = useRef<any>(null);
+  const vantaEffectRef = useRef<VantaEffect | null>(null);
   console.log(isMobile)
   useEffect(() => {
     if (typeof window !== 'undefined' && window.VANTA) {
