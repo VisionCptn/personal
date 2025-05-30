@@ -128,7 +128,7 @@ export default function SnakeGamePage() {
         console.log(data);
         setLeaderboard(data || []);
       } catch (err) {
-        // Optionally handle error
+        console.log(err)
       }
       setLoading(false);
     }
@@ -152,7 +152,7 @@ export default function SnakeGamePage() {
       const lbData = await lbRes.json();
       setLeaderboard(lbData || []);
     } catch (err) {
-      // Optionally handle error
+        console.log(err);
     }
     setLoading(false);
   }
