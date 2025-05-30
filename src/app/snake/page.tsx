@@ -1,6 +1,5 @@
 'use client';
 import React, { useRef, useEffect, useState } from 'react';
-import { supabase } from '../../utils/supabaseClient';
 
 const SCALE = 15;
 const INITIAL_SNAKE = [
@@ -118,16 +117,19 @@ export default function SnakeGamePage() {
     }
   }, [snake, food, gameOver, canvasSize]);
 
-  // Fetch leaderboard from Supabase
+  // Fetch leaderboard from API route
   useEffect(() => {
     async function fetchLeaderboard() {
       setLoading(true);
-      const { data, error } = await supabase
-        .from('snake_leaderboard')
-        .select('name, score')
-        .order('score', { ascending: false })
-        .limit(10);
-      if (!error && data) setLeaderboard(data);
+      try {
+        const res = await fetch('/api/snake-leaderboard');
+        if (!res.ok) throw new Error('Failed to fetch leaderboard');
+        const data = await res.json();
+        console.log(data);
+        setLeaderboard(data || []);
+      } catch (err) {
+        // Optionally handle error
+      }
       setLoading(false);
     }
     fetchLeaderboard();
@@ -137,22 +139,22 @@ export default function SnakeGamePage() {
     e.preventDefault();
     setSubmitted(true);
     setLoading(true);
-    // Insert result into Supabase
-    const { error } = await supabase
-      .from('snake_leaderboard')
-      .insert([{ name: username, score }]);
-    setLoading(false);
-    if (!error) {
-      setLeaderboard(lb => [...lb, { name: username, score }].sort((a, b) => b.score - a.score).slice(0, 10));
+    try {
+      const res = await fetch('/api/snake-leaderboard', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: username, score }),
+      });
+      if (!res.ok) throw new Error('Failed to submit score');
       setUsername('');
-      // Optionally, re-fetch leaderboard from Supabase
-      const { data } = await supabase
-        .from('snake_leaderboard')
-        .select('name, score')
-        .order('score', { ascending: false })
-        .limit(10);
-      if (data) setLeaderboard(data);
+      // Re-fetch leaderboard after submit
+      const lbRes = await fetch('/api/snake-leaderboard');
+      const lbData = await lbRes.json();
+      setLeaderboard(lbData || []);
+    } catch (err) {
+      // Optionally handle error
     }
+    setLoading(false);
   }
 
   return (

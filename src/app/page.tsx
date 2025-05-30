@@ -37,6 +37,12 @@ export default function Home() {
 intuitive, high-performance UIs, optimizing frontend architecture, and leading development teams.</h2>
       </div>
     </main>
+    {/* Floating snake emoji at bottom right using Tailwind */}
+    <div className="fixed bottom-4 right-4 text-[20px] z-50 pointer-events-none select-none">
+      <a href="/snake" className="hidden"></a>
+      🐍
+    </div>
+    {/* End floating emoji */}
     </>
   );
 }
