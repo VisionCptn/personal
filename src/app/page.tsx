@@ -1,9 +1,14 @@
 'use client';
 import VantaBackground from './components/VantaBackground';
 import { useTheme } from './contexts/ThemeContext';
+import { useUserCountry } from './hooks/useUserCountry';
 
 export default function Home() {
  const { theme } = useTheme();
+ const country = useUserCountry();
+ const cvLink = country === 'US'
+  ? 'https://drive.google.com/file/d/1-7aDoS1vDPJx932Dl-6gAdoOtgrZSlx_/view'
+  : 'https://drive.google.com/file/d/1sW9h9GzR_y-pzzego8Nko6XNwr7LijrR/view';
   return (
     <>
     <VantaBackground />
@@ -27,7 +32,14 @@ export default function Home() {
             </svg>
           </a>
         </div>
-        <a href="https://drive.google.com/file/d/15scxKroHgD0SFuL5a7R6E_6BEH900juT/view" className="ml-6 lg:text-xl text-base font-bold mr-2 underline" target="_blank" rel="noopener noreferrer">resume</a>
+        <a 
+          href={cvLink}
+          title="resume"
+          className="ml-6 lg:text-xl text-base font-bold mr-2 underline"
+          target="_blank"
+          rel="noopener noreferrer">
+            resume
+          </a>
       </div>
      
       <div className="xl:min-h-[80vh] flex flex-col gap-12 mt-14 mb-16 xl:mb-0 lg:mt-18 xl:mt-24 xl:pr-96 z-10">

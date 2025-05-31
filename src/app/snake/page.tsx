@@ -125,7 +125,6 @@ export default function SnakeGamePage() {
         const res = await fetch('/api/snake-leaderboard');
         if (!res.ok) throw new Error('Failed to fetch leaderboard');
         const data = await res.json();
-        console.log(data);
         setLeaderboard(data || []);
       } catch (err) {
         console.log(err)
