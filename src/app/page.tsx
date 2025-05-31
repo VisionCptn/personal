@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <>
     <VantaBackground />
-    <main className="flex flex-col items-center justify-between pt-6 p-14">
+    <main className="flex flex-col items-center justify-between pt-0 p-14">
       <div className="absolute top-6 left-14 flex">
         <div className="flex gap-3">
           <a href="mailto:workgolf@gmail+20.gmail.com" title="Mail me" target="_blank">
@@ -42,7 +42,7 @@ export default function Home() {
           </a>
       </div>
      
-      <div className="xl:min-h-[80vh] flex flex-col gap-12 mt-14 mb-16 xl:mb-0 lg:mt-18 xl:mt-24 xl:pr-96 z-10">
+      <div className="xl:min-h-[80vh] flex flex-col gap-12 mt-20 mb-16 xl:mb-0 lg:mt-18 xl:mt-24 xl:pr-96 z-10">
         <h2 className="mt-2 mb-0 font-bold text-2xl lg:text-3xl xl:text-4xl">Hello !</h2>
         <h2 className="mt-2 mb-0 font-bold text-2xl lg:text-3xl xl:text-4xl">My name is Volodymyr Lukasevych</h2>
         <h2 className="mt-2 mb-0 font-bold text-2xl lg:text-3xl xl:text-4xl">A Senior Frontend Engineer with <s>11</s> 12 years in developing scalable web applications. Passionate about building
