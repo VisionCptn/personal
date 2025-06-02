@@ -18,7 +18,6 @@ export const metadata: Metadata = {
 };
 
 import { ThemeProvider } from "./contexts/ThemeContext";
-import { ThemeSwitcher } from "./components/ThemeSwitcher";
 
 export default function RootLayout({
   children,
@@ -27,14 +26,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <title>Volodymyr Lukasevych | Senior Frontend Engineer</title>
-      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider>
-            <ThemeSwitcher />
             {children}
         </ThemeProvider>
       </body>

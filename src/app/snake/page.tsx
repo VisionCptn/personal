@@ -120,6 +120,7 @@ export default function SnakeGamePage() {
   // Fetch leaderboard from API route
   useEffect(() => {
     async function fetchLeaderboard() {
+      // toggleTheme(true);
       setLoading(true);
       try {
         const res = await fetch('/api/snake-leaderboard');
@@ -157,7 +158,7 @@ export default function SnakeGamePage() {
   }
 
   return (
-    <div className="flex flex-row items-start mt-8 gap-12">
+    <div className="flex flex-row items-start pt-8 gap-12 bg-black min-h-screen">
       <div className="flex flex-col items-center">
         <h1 className="text-2xl font-bold mb-4">Snake Game</h1>
         <canvas

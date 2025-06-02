@@ -48,7 +48,7 @@ const VantaBackground = () => {
             <div 
               ref={vantaRef}
               id="homepage-background" 
-              className="fixed top-0 left-0 w-full h-screen -z-10 opacity-50"
+              className="fixed top-0 left-0 w-full h-screen -z-10 opacity-65"
             />
             <Script
               src="/static/vanta.js"
